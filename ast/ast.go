@@ -1,6 +1,8 @@
 package ast
 
-import "compiler/token"
+import (
+	"compiler/token"
+)
 
 type Node interface {
 	TokenLiteral() string
@@ -20,14 +22,20 @@ type Program struct {
 	Statements []Statement
 }
 
+type ReturnStatement struct {
+	Token       token.Token
+	ReturnValue Expression
+}
 type LetStatement struct {
 	Token token.Token
 	Name  *Identifier
 	Value Expression
 }
 
-func (ls *LetStatement) statementNode()       {}
-func (ls *LetStatement) TokenLiteral() string { return ls.Token.Literal }
+func (rs *ReturnStatement) statementNode()
+func (rs *ReturnStatement) TokenLiteral() string { return rs.Token.Literal }
+func (ls *LetStatement) statementNode()          {}
+func (ls *LetStatement) TokenLiteral() string    { return ls.Token.Literal }
 
 type Identifier struct {
 	Token token.Token
